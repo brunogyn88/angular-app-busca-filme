@@ -1,0 +1,48 @@
+<div class="container pt-5 pb-5">
+  <h1>TITULO</h1>
+  <h2>
+    Descrição Descrição Descrição Descrição Descrição Descrição Descrição
+    Descrição Descrição Descrição Descrição Descrição Descrição Descrição
+    Descrição Descrição Descrição Descrição Descrição Descrição
+  </h2>
+
+  <form [formGroup]="formMovie" (ngSubmit)="getMovie()" class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="inputSearch"
+          name="name"
+          formControlName="name"
+          placeholder="Digite um filme"
+          (valueChange)="onKeypressEvent($event)"
+        />
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+    <div class="col-md-2">
+      <button type="button" (click)="reset()" class="btn btn-secondary">
+        Reset
+      </button>
+    </div>
+  </form>
+
+  <div class="row mt-5">
+    <div class="col-md-9">
+      <span class="title-movie">{{ movie?.Title }}</span
+      ><br />
+      <span class="description-movie">
+        {{ movie?.Plot }}
+      </span>
+      <br />
+      <span>Actor: {{ movie?.Actors }}</span>
+      <span>Review: </span>
+    </div>
+    <div class="col-md-3">
+      <img [src]="movie?.Poster" class="img-fluid" alt="movie image" />
+    </div>
+  </div>
+</div>
