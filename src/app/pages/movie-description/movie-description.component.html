@@ -1,10 +1,6 @@
 <div class="container pt-5 pb-5">
-  <h1>TITULO</h1>
-  <h2>
-    Descrição Descrição Descrição Descrição Descrição Descrição Descrição
-    Descrição Descrição Descrição Descrição Descrição Descrição Descrição
-    Descrição Descrição Descrição Descrição Descrição Descrição
-  </h2>
+  <h1>Busca Filmes</h1>
+  <h2>Buscando qualquer filme.</h2>
 
   <form [formGroup]="formMovie" (ngSubmit)="getMovie()" class="row">
     <div class="col-md-8">
@@ -30,16 +26,21 @@
     </div>
   </form>
 
-  <div class="row mt-5">
-    <div class="col-md-9">
-      <span class="title-movie">{{ movie?.Title }}</span
-      ><br />
-      <span class="description-movie">
+  <div *ngIf="movie" class="row mt-5">
+    <div class="col-md-9 d-flex flex-column align-items-start">
+      <span class="title-movie">{{ movie?.Title }}</span>
+      <span class="description-movie mb-3 mt-3">
         {{ movie?.Plot }}
       </span>
-      <br />
-      <span>Actor: {{ movie?.Actors }}</span>
-      <span>Review: </span>
+
+      <span class="mb-3">Actor: {{ movie?.Actors }}</span>
+      <span
+        >Review:
+        <app-rate-star [score]="+movie.Metascore"></app-rate-star>
+      </span>
+      <button type="submit" class="btn btn-danger btn-favorite mt-3">
+        Favorite <fa-icon [icon]="faHeart"></fa-icon>
+      </button>
     </div>
     <div class="col-md-3">
       <img [src]="movie?.Poster" class="img-fluid" alt="movie image" />

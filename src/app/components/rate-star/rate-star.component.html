@@ -1,0 +1,45 @@
+<fa-icon
+  [icon]="
+    score >= 20
+      ? faStar
+      : score > 0 && score < 20
+      ? faStarHalfStroke
+      : faStartRegular
+  "
+></fa-icon>
+<fa-icon
+  [icon]="
+    score >= 40
+      ? faStar
+      : score > 20 && score < 40
+      ? faStarHalfStroke
+      : faStartRegular
+  "
+></fa-icon>
+<fa-icon
+  [icon]="
+    score >= 60
+      ? faStar
+      : score > 40 && score < 60
+      ? faStarHalfStroke
+      : faStartRegular
+  "
+></fa-icon>
+<fa-icon
+  [icon]="
+    score >= 80
+      ? faStar
+      : score > 60 && score < 80
+      ? faStarHalfStroke
+      : faStartRegular
+  "
+></fa-icon>
+<fa-icon
+  [icon]="
+    score == 100
+      ? faStar
+      : score > 80 && score < 100
+      ? faStarHalfStroke
+      : faStartRegular
+  "
+></fa-icon>

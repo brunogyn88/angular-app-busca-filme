@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { IMovieResponse } from 'src/app/interface/movie';
 import { MovieService } from 'src/app/services/movie/movie.service';
 
@@ -14,6 +15,10 @@ export class MovieDescriptionComponent implements OnInit {
   });
   public movie: IMovieResponse | undefined;
 
+  public arrayStarsRating: [] = [];
+
+  faHeart = faHeart;
+
   constructor(public movieService: MovieService) {}
 
   ngOnInit(): void {}
@@ -23,6 +28,7 @@ export class MovieDescriptionComponent implements OnInit {
     this.movieService.getMovie(name).subscribe({
       next: (res) => {
         this.movie = res;
+        console.log(+this.movie.Metascore);
       },
       error: (err) => {
         console.log(err);
