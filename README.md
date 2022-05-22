@@ -1,9 +1,3 @@
-[![Travis branch](https://img.shields.io/travis/com/po-ui/po-angular/master?style=flat-square)](https://travis-ci.com/github/po-ui/po-angular)
-[![npm package](https://img.shields.io/npm/v/@po-ui/ng-components?color=%23c9357d&style=flat-square)](https://www.npmjs.org/package/@po-ui/ng-components)
-[![NPM downloads](https://img.shields.io/npm/dm/@po-ui/ng-components?color=c9357d&label=npm%20downloads&style=flat-square)](https://npmjs.com/package/@po-ui/ng-components)
-[![GitHub license](https://img.shields.io/npm/l/@po-ui/ng-components?color=%23c9357d&style=flat-square)](https://github.com/po-ui/po-angular/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/badge/Twitter-POUI-c9357d?style=flat-square&logo=twitter)](https://twitter.com/pouidev)
-
 # AngularAppBuscaFilme
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
