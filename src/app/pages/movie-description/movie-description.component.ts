@@ -14,21 +14,24 @@ export class MovieDescriptionComponent implements OnInit {
     name: new FormControl(null, Validators.required),
   });
   public movie: IMovieResponse | undefined;
+  public listMovieFavorite: IMovieResponse[] = [];
 
   public arrayStarsRating: [] = [];
+  public favorite: boolean = false;
 
   faHeart = faHeart;
 
   constructor(public movieService: MovieService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getListFavoriteMovies();
+  }
 
   getMovie(): void {
     const name = this.formMovie.get('name')?.value;
     this.movieService.getMovie(name).subscribe({
       next: (res) => {
         this.movie = res;
-        console.log(+this.movie.Metascore);
       },
       error: (err) => {
         console.log(err);
@@ -43,5 +46,26 @@ export class MovieDescriptionComponent implements OnInit {
 
   onKeypressEvent(event: any): void {
     if (event.key === 'Enter') this.getMovie();
+  }
+
+  addAndRemovefavoriteMovies(): void {
+    if (this.favorite && this.movie) {
+      this.movieService.removeMovieFavotie(this.movie);
+      this.getListFavoriteMovies();
+      this.favorite = false;
+    } else {
+      this.movieService.setMovieFavotie(this.movie);
+      this.favorite = true;
+      this.getListFavoriteMovies();
+    }
+  }
+
+  getListFavoriteMovies(): void {
+    this.listMovieFavorite = this.movieService.getMovieFavotie();
+  }
+
+  openMoviteFavorite(movieFavorite: IMovieResponse) {
+    this.movie = movieFavorite;
+    this.favorite = true;
   }
 }

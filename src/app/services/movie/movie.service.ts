@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class MovieService {
   public configUrl = environment.configUrl;
   public apiKey = environment.apiKey;
+  private keyFavorite: string = 'list-favorite-movies';
   constructor(private http: HttpClient) {}
 
   /**
@@ -24,5 +25,41 @@ export class MovieService {
         apiKey: this.apiKey,
       },
     });
+  }
+
+  /**
+   * Function set Movie Favorite in localStorage
+   * @param movie name movie, type IMovieResponse
+   */
+  setMovieFavotie(movie: IMovieResponse | undefined): void {
+    let arrayMoviesFavorite = this.getMovieFavotie();
+    if (movie) {
+      arrayMoviesFavorite.push(movie);
+      localStorage.setItem(
+        this.keyFavorite,
+        JSON.stringify(arrayMoviesFavorite)
+      );
+    }
+  }
+
+  /**
+   * Function get Movie Favorite in localStorage
+   * @returns IMovieResponse[]
+   */
+  getMovieFavotie(): IMovieResponse[] {
+    const arrayMoviesFavorite = localStorage.getItem(this.keyFavorite);
+    return arrayMoviesFavorite ? JSON.parse(arrayMoviesFavorite) : [];
+  }
+
+  /**
+   * Function remove a Movie Favorite in localStorage
+   * @param movie name movie, type IMovieResponse
+   */
+  removeMovieFavotie(movie: IMovieResponse): void {
+    let arrayMoviesFavorite = this.getMovieFavotie();
+    arrayMoviesFavorite = arrayMoviesFavorite.filter(
+      (item) => item.Title !== movie.Title
+    );
+    localStorage.setItem(this.keyFavorite, JSON.stringify(arrayMoviesFavorite));
   }
 }
